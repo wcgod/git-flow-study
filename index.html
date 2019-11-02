@@ -5,11 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Lotto</title>
+<!-- 추첨 번호(.number) 스타일 작성 [feature/style]-->
+<style>
+        .number {
+            display: inline-block;
+            background: #aaa;
+            color: white;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            line-height: 100px;
+            font-size: 64px;
+            text-align: center;
+            font-weight: bold;
+            overflow: hidden;
+        }
+	.numset {
+        text-align: center;
+        padding: 10px;
+    }
+        </style>
 </head>
 <body>
     <h1>로또번호 추첨기</h1>
 
-    <button onclick="getLuckyNumber()">생성하기</button>
+    <button onclick="genLottoHTML()">생성하기</button>
     <div id="LOTTO"></div>
     
 <script>
@@ -27,8 +47,20 @@ function getLuckyNumber(){
             numbers.push(newNumber);
         }
     }
-    LOTTO.innerHTML = numbers.join(" ");
+    return numbers;
 }
+// TODO 로또 번호(.number) html 생성 함수 작성 [feature/script]
+function genLottoHTML(){
+    var lottoHTML = '';
+    for (var i=0; i<5; i++) {
+        var numbers = getLuckyNumber();
+        lottoHTML += '<div class="numset"><span class="number">';
+        lottoHTML += numbers.join('</span> <span class="number">');
+        lottoHTML += '</span></div>';
+    }
+    LOTTO.innerHTML = lottoHTML;
+}
+
 </script>
 </body>
 </html>
